@@ -57,7 +57,7 @@ new_window pixel 1
 
 # Set inner/outer gaps
 gaps inner 10
-gaps outer 12
+gaps outer 4
 
 
 
