@@ -1,0 +1,19 @@
+#!/bin/bash
+
+output=$(solaar show | awk '/MX Keys Mini/,/Battery:/')
+battery_info=$(echo "$output" | grep "Battery:")
+percentage=$(echo "$battery_info" | awk -F',' '{ print $1 }' | awk '{ print $2 }')
+status_code=$(echo "$battery_info" | awk -F',' '{ print $2 }' | awk '{ print $1 }')
+icon=""
+# Determinar el ícono según el estado de carga
+if [[ "$status_code" == "1." ]]; then
+    icon="⚡"  # Cargando
+elif [[ "$status_code" == "2." ]]; then
+    icon="🔋"  # Carga completa
+else
+    icon=""  # No cargando
+fi
+
+# Mostrar sin coma y con ícono
+echo "$icon ${percentage%\%}%"
+

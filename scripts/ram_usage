@@ -1,0 +1,3 @@
+#!/bin/bash
+free -h | awk '/^Mem:/ {gsub("i", "", $3); gsub(",", ".", $3); gsub("i", "", $2); gsub(",", ".", $2); print  $3 "/" $2}'
+
